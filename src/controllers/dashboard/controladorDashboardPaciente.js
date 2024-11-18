@@ -69,9 +69,17 @@ let pacientes = [
     //6. Se crean etiqueta para mostrar el nombre del paciente
     let nombre = document.createElement("h2");
     nombre.textContent = paciente.nombre;
+
+    let ips = document.createElement("p");
+    ips.textContent = paciente.ips;
+
+    let ciudad = document.createElement("p");
+    ciudad.textContent = paciente.ciudad;
   
     //7. Ordenando las tarjetas
     tarjeta.appendChild(nombre);
+    tarjeta.appendChild(ips);
+    tarjeta.appendChild(ciudad);
     columna.appendChild(tarjeta);
     fila.appendChild(columna);
   });

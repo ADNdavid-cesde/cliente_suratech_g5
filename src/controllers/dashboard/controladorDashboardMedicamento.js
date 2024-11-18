@@ -69,14 +69,20 @@ let medicamentos = [
  
    //5. Se crea tarjetas
    let tarjeta = document.createElement("div");
-   tarjeta.classList.add("card", "p-5", "h-100", "shadow");
- 
+   tarjeta.classList.add("card", "p-5", "h-100", "shadow"); 
    
    let nombre = document.createElement("h2");
    nombre.textContent = medicamento.nombre;
- 
+
+   let presentacion = document.createElement("p");
+  presentacion.textContent = medicamento.presentacion;
+
+  let dosis = document.createElement("p");
+  dosis.textContent = medicamento.dosis;
 
    tarjeta.appendChild(nombre);
+   tarjeta.appendChild(presentacion);
+   tarjeta.appendChild(dosis);
    columna.appendChild(tarjeta);
    fila.appendChild(columna);
  });

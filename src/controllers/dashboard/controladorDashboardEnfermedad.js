@@ -54,14 +54,22 @@ let enfermedades = [
  
    //5. Se crea tarjetas
    let tarjeta = document.createElement("div");
-   tarjeta.classList.add("card", "p-5", "h-100", "shadow");
- 
+   tarjeta.classList.add("card", "p-5", "h-100", "shadow"); 
    
    let nombre = document.createElement("h2");
    nombre.textContent = enfermedad.nombre;
+
+   let clasificacion = document.createElement("p");
+   clasificacion.textContent = enfermedad.clasificacion;
+   clasificacion.classList.add("text-warning")
+
+   let grado = document.createElement("p");
+    grado.textContent = enfermedad.grado;
  
 
    tarjeta.appendChild(nombre);
+   tarjeta.appendChild(clasificacion);
+   tarjeta.appendChild(grado);
    columna.appendChild(tarjeta);
    fila.appendChild(columna);
  });

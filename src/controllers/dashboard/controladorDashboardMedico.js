@@ -74,14 +74,20 @@ let medicos = [
  
    //5. Se crea tarjetas
    let tarjeta = document.createElement("div");
-   tarjeta.classList.add("card", "p-5", "h-100", "shadow");
- 
+   tarjeta.classList.add("card", "p-5", "h-100", "shadow"); 
    
    let nombre = document.createElement("h2");
    nombre.textContent = medico.nombre;
- 
+  
+   let especialidad = document.createElement("p");
+   especialidad.textContent = medico.especialidad;
+
+   let ips = document.createElement("p");
+   ips.textContent = medico.ips;
 
    tarjeta.appendChild(nombre);
+   tarjeta.appendChild(especialidad);
+   tarjeta.appendChild(ips);
    columna.appendChild(tarjeta);
    fila.appendChild(columna);
  });
