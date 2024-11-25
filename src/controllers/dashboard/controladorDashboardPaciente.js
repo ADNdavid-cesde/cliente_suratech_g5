@@ -1,7 +1,9 @@
+import {traerPacientes} from "../../services/servicioPaciente.js" //importa funciones de otro archivo JS
+
 //Objetivo: recibir datos de back y renderizarlos en el Front
 
-//1. quemar o simular los datos
-let pacientes = [
+//1-A. quemar o simular los datos
+/* let pacientes = [
     {
       id: 1,
       nombre: "Homero Simpson",
@@ -50,9 +52,14 @@ let pacientes = [
       grupoIngresos: "B",
       fechaAfiliacion: "2022-03-10",
     },
-  ];
+  ]; */
   
-  //2. crear una referencia a una etiqueta html donde vamos a renderizar
+  //1-B Llamar el API
+  traerPacientes()
+  .then((pacientes)=>{ //RespuestaBack
+    console.log(pacientes);
+
+    //2. crear una referencia a una etiqueta html donde vamos a renderizar
   let fila = document.getElementById("fila");
   
   //3. se recorren los datos del arreglo para obtenerlos de forma separada
@@ -83,3 +90,10 @@ let pacientes = [
     columna.appendChild(tarjeta);
     fila.appendChild(columna);
   });
+    
+  })
+  .catch((error) =>{
+    console.log(error);
+  });
+
+  
