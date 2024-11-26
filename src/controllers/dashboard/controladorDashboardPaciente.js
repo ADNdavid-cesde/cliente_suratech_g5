@@ -1,4 +1,4 @@
-import {traerPacientes} from "../../services/servicioPaciente.js" //importa funciones de otro archivo JS
+import { traerPacientes } from "../../services/servicioPaciente.js"; //importa funciones de otro archivo JS
 
 //Objetivo: recibir datos de back y renderizarlos en el Front
 
@@ -53,47 +53,45 @@ import {traerPacientes} from "../../services/servicioPaciente.js" //importa func
       fechaAfiliacion: "2022-03-10",
     },
   ]; */
-  
-  //1-B Llamar el API
-  traerPacientes()
-  .then((pacientes)=>{ //RespuestaBack
+
+//1-B Llamar el API
+traerPacientes()
+  .then((pacientes) => {
+    //RespuestaBack
     console.log(pacientes);
 
     //2. crear una referencia a una etiqueta html donde vamos a renderizar
-  let fila = document.getElementById("fila");
-  
-  //3. se recorren los datos del arreglo para obtenerlos de forma separada
-  pacientes.forEach((paciente) => {
-    console.log(paciente);
-    //4. Se crean columnas
-    let columna = document.createElement("div");
-    columna.classList.add("col");
-  
-    //5. Se crea tarjetas
-    let tarjeta = document.createElement("div");
-    tarjeta.classList.add("card", "p-5", "h-100", "shadow");
-  
-    //6. Se crean etiqueta para mostrar el nombre del paciente
-    let nombre = document.createElement("h2");
-    nombre.textContent = paciente.nombre;
+    let fila = document.getElementById("fila");
 
-    let ips = document.createElement("p");
-    ips.textContent = paciente.ips;
+    //3. se recorren los datos del arreglo para obtenerlos de forma separada
+    pacientes.forEach((paciente) => {
+      console.log(paciente);
+      //4. Se crean columnas
+      let columna = document.createElement("div");
+      columna.classList.add("col");
 
-    let ciudad = document.createElement("p");
-    ciudad.textContent = paciente.ciudad;
-  
-    //7. Ordenando las tarjetas
-    tarjeta.appendChild(nombre);
-    tarjeta.appendChild(ips);
-    tarjeta.appendChild(ciudad);
-    columna.appendChild(tarjeta);
-    fila.appendChild(columna);
-  });
-    
+      //5. Se crea tarjetas
+      let tarjeta = document.createElement("div");
+      tarjeta.classList.add("card", "p-5", "h-100", "shadow");
+
+      //6. Se crean etiqueta para mostrar el nombre del paciente
+      let nombre = document.createElement("h2");
+      nombre.textContent = paciente.nombre;
+
+      let ips = document.createElement("p");
+      ips.textContent = paciente.ips;
+
+      let ciudad = document.createElement("p");
+      ciudad.textContent = paciente.ciudad;
+
+      //7. Ordenando las tarjetas
+      tarjeta.appendChild(nombre);
+      tarjeta.appendChild(ips);
+      tarjeta.appendChild(ciudad);
+      columna.appendChild(tarjeta);
+      fila.appendChild(columna);
+    });
   })
-  .catch((error) =>{
+  .catch((error) => {
     console.log(error);
   });
-
-  
