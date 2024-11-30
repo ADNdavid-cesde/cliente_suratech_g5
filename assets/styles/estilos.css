@@ -32,5 +32,8 @@
     left:0;
     opacity: 0.5;
     z-index: -1;
-
 }
+
+div > div > p[class*="align-self-end"]:hover{
+    transform: scale(1.1);
+} 

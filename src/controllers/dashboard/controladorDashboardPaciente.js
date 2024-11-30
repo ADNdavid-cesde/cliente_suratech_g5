@@ -84,10 +84,14 @@ traerPacientes()
       let ciudad = document.createElement("p");
       ciudad.textContent = paciente.ciudad;
 
+      let acciones = document.createElement("p");
+      acciones.innerHTML= '<span>📝</span> <span>🗑</span>';
+
       //7. Ordenando las tarjetas
       tarjeta.appendChild(nombre);
       tarjeta.appendChild(ips);
       tarjeta.appendChild(ciudad);
+      tarjeta.appendChild(acciones);
       columna.appendChild(tarjeta);
       fila.appendChild(columna);
     });

@@ -35,7 +35,7 @@ botonRegistrarPaciente.addEventListener("click", (evento) => {
     fechaAfiliacion: afiliacionPaciente.value,
   };
 
-  //6.  Se envia el JSON a la API(se envia datos al back)
+  //6.  Se envía el JSON a la API(se envía datos al back)
   console.dir(paciente);
   //console.log(paciente);
   guardarPaciente(paciente)
