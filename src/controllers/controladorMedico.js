@@ -1,3 +1,5 @@
+import { guardarMedico } from "../services/servicioMedico.js"
+
 let nombreMedico = document.getElementById("nombremedico");
 let matriculaMedico = document.getElementById("matriculamedico");
 let especialidadMedico = document.getElementById("especialidadmedico");
@@ -26,10 +28,16 @@ botonRegistrarMedico.addEventListener("click", (evento) => {
     }
 
     console.log(medico);
-
-    Swal.fire({
-        title: "Registro exitoso",
-        text: "Se ha ingresado  el medico con exito",
-        icon: "success"
-      });
+    guardarMedico(medico)
+    .then((respuesta)=>{
+        console.log(respuesta);
+        Swal.fire({
+            title: "Registro exitoso",
+            text: "Se ha ingresado  el medico con exito",
+            icon: "success"
+          });
+    })
+    .catch((error) => {
+        console.log(error);
+      });    
 });

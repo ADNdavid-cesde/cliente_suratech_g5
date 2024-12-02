@@ -1,3 +1,5 @@
+import { guardarMedicamento } from "../services/servicioMedicamento.js";
+
 let nombreMedicamento = document.getElementById("nombremedicamento");
 let presentacion = document.getElementById("presentacionmedicamento");
 let dosis = document.getElementById("dosismedicamento");
@@ -24,6 +26,13 @@ botonRegistrarMedicamento.addEventListener("click", (evento) => {
     }
 
     console.log(medicamento);
+    guardarMedicamento(medicamento)
+    .then((respuesta) => {
+        console.log(respuesta);
+    })
+    .catch((error) => {
+        console.log(error);
+      });
 
     Swal.fire({
         title: "Registro exitoso",

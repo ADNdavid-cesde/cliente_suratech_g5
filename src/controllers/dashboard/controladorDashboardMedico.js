@@ -1,6 +1,6 @@
-import { eliminarMedico } from "../../services/servicioMedico.js";
+import { eliminarMedico, traerMedicos } from "../../services/servicioMedico.js";
 
-let medicos = [
+/* let medicos = [
   {
     id: 1,
     nombre: "Dr. Juan Pérez",
@@ -61,12 +61,22 @@ let medicos = [
     direccionConsultorio: "Calle 92 No. 19-23, Cartagena",
     finDeSemanaDisponible: false,
   },
-];
+]; */
 
 function mostrarMedicos() {
   //2. crear una referencia a una etiqueta html donde vamos a renderizar
   let fila = document.getElementById("fila");
   fila.innerHTML = "";
+
+  let medicos;
+  traerMedicos().then(
+    (respuesta) => {
+     medicos = respuesta;
+     console.log(respuesta);
+    }
+  ).catch((error)=>{
+    console.log(error);
+  });
 
   //3. se recorren los datos del arreglo para obtenerlos de forma separada
   medicos.forEach((medico) => {

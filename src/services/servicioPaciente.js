@@ -43,8 +43,8 @@ export async function actualizarPaciente(paciente, id) {
 
   //3. Se configura la respuesta del servicio a consumir
   let respuestaServidor = await fetch(URL+'/'+id, peticionPUT);
-  let paciente = await respuestaServidor.json();
-  return paciente;
+  let pacienteActualizado = await respuestaServidor.json();
+  return pacienteActualizado;
 }
 
 export async function eliminarPaciente() { 

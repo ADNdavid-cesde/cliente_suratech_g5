@@ -1,3 +1,5 @@
+import { guardarSignoVital } from "../services/servicioSignoVital.js";
+
 let fechaToma = document.getElementById("fechatoma");
 let descripcion = document.getElementById("descripcion");
 let signoVital = document.getElementById("signovital");
@@ -14,10 +16,15 @@ botonRegistrarSignovital.addEventListener("click", (evento) => {
     }
 
     console.log(tomaSignoVital);
-
-    Swal.fire({
-        title: "Registro exitoso",
-        text: "Se ha regitrado signo vital con exito",
-        icon: "success"
-      });
+    guardarSignoVital(tomaSignoVital)
+    .then((respuesta) =>{
+        Swal.fire({
+            title: "Registro exitoso",
+            text: "Se ha regitrado signo vital con exito",
+            icon: "success"
+          });
+    })
+    .catch((error) => {
+        console.log(error);
+      });    
 });
