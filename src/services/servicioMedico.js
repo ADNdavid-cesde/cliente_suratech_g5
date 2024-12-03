@@ -34,16 +34,27 @@ export async function actualizarMedico(datosMedico, id) {
   };
 
   let respuestaServidor = await fetch(URL + "/" + id, peticionPUT);
-  let medico = await respuestaServidor.json();
-  return medico;
+  let medicoActualizado = await respuestaServidor.json();
+  return medicoActualizado;
 }
 
-export async function eliminarMedico() {
+export async function eliminarMedico(id) {
   let peticionDELETE = {
     method: "DELETE",
   };
 
   let respuestaServidor = await fetch(URL + "/" + id, peticionDELETE);
-  let respuesta = await respuestaServidor.json();
+  let respuesta = await respuestaServidor.text();
+  console.log(respuesta);
   return respuesta;
+}
+
+export async function traerMedico(id) {
+  let peticionGET = {
+    method: "GET",
+  };
+
+  let respuestaServidor = await fetch(URL + "/" + id, peticionGET);
+  let medico = await respuestaServidor.json();
+  return medico;
 }

@@ -5,38 +5,42 @@ let presentacion = document.getElementById("presentacionmedicamento");
 let dosis = document.getElementById("dosismedicamento");
 let laboratorio = document.getElementById("laboratoriomedicamento");
 let fechaCaducidad = document.getElementById("caducidadmedicamanto");
-let contraindicaciones = document.getElementById("contraindicacionesmedicamento");
+let contraindicaciones = document.getElementById(
+  "contraindicacionesmedicamento"
+);
 let regInvima = document.getElementById("invimamedicamento");
 let copago = document.getElementById("copagomedicamento");
 
-let botonRegistrarMedicamento = document.getElementById("botonregistromedicamento");
+let botonRegistrarMedicamento = document.getElementById(
+  "botonregistromedicamento"
+);
 
 botonRegistrarMedicamento.addEventListener("click", (evento) => {
-    evento.preventDefault();
+  evento.preventDefault();
 
-    let medicamento = {
-        nombre: nombreMedicamento.value,
-        presentacion: presentacion.value,
-        dosis: dosis.value,
-        laboratorio: laboratorio.value,
-        fechaCaducidad: fechaCaducidad.value,
-        contraIndicaciones: contraindicaciones.value,
-        registroInvima: regInvima.value,
-        copago: copago.value
-    }
+  let medicamento = {
+    nombre: nombreMedicamento.value,
+    presentacion: presentacion.value,
+    dosis: dosis.value,
+    laboratorio: laboratorio.value,
+    fechaCaducidad: fechaCaducidad.value,
+    contraIndicaciones: contraindicaciones.value,
+    registroInvima: regInvima.value,
+    copago: copago.checked,
+  };
 
-    console.log(medicamento);
-    guardarMedicamento(medicamento)
+  console.log(medicamento);
+  guardarMedicamento(medicamento)
     .then((respuesta) => {
-        console.log(respuesta);
+      console.log(respuesta);
     })
     .catch((error) => {
-        console.log(error);
-      });
+      console.log(error);
+    });
 
-    Swal.fire({
-        title: "Registro exitoso",
-        text: "Se ha registrado  el medicamento con éxito",
-        icon: "success"
-      });
+  Swal.fire({
+    title: "Registro exitoso",
+    text: "Se ha registrado el medicamento con éxito",
+    icon: "success",
+  });
 });

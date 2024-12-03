@@ -68,7 +68,7 @@
             <h4>Pacientes:</h4>
             <p>
               Hasta la fecha la APP registra
-              <span class="fw-bold">14936</span> Usuarios
+              <span class="fw-bold" id="cantidadRegistros">14936</span> Usuarios
             </p>
             <i class="bi bi-bandaid-fill fs-1"></i>
             <i class="bi bi-heart-pulse-fill fs-1 mx-3"></i>
@@ -88,7 +88,82 @@
       </section>
     </main>
 
-    <script src="../../controllers/dashboard/controladorDashboardPaciente.js" type="module"></script>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Editar paciente</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                  <div class="col-6">
+                      <label class="form-label">Nombres:</label>
+                      <input class="form-control" type="text" id="nombrepaciente">
+                  </div>
+                  <div class="col-6">
+                      <label class="form-label">Fecha nacimiento:</label>
+                      <input class="form-control" type="date" id="nacimientopaciente">
+                  </div>
+                  <div class="col-6"></div>
+              </div>
+              <div class="row my-3">
+                  <div class="col-6">
+                      <label class="form-label">Ciudad:</label>
+                      <input class="form-control" type="text" id="ciudadpaciente">
+                  </div>
+                  <div class="col-6">
+                      <label class="form-label">Correo electrónico:</label>
+                      <input class="form-control" type="email" id="correopaciente">
+                  </div>
+                  <div class="col-6"></div>
+              </div>
+              <div class="row my-3">
+                  <div class="col-6">
+                      <label class="form-label">Teléfono:</label>
+                      <input class="form-control" type="number" id="telefonopaciente">
+                  </div>
+                  <div class="col-6">
+                      <label class="form-label">IPS:</label>
+                      <input class="form-control" type="text" id="ipspaciente">
+                  </div>
+                  <div class="col-6"></div>
+              </div>
+              <div class="row">
+                  <div class="col-6">
+                      <label class="form-label">Grupo ingresos:</label>
+                      <select class="form-select" aria-label="Default select example" id="grupoingresospaciente">
+                          <option selected hidden>Selecciona una opción</option>
+                          <option value="A">A</option>
+                          <option value="B">B</option>
+                          <option value="C">C</option>
+                        </select>
+                  </div>
+                  <div class="col-6">
+                      <label class="form-label">Fecha afiliación:</label>
+                      <input class="form-control" type="date" id="afiiacionpaciente">
+                  </div>
+                  <div class="col-6"></div>
+              </div>
+              <div class="row my-3 ">
+                  <div class="form-check form-switch ms-2">
+                      <input class="form-check-input" type="checkbox" role="switch" id="polizapaciente">
+                      <label class="form-label" for="polizapaciente">¿Tiene póliza?</label>
+                    </div>
+              </div>              
+          </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="botonguardarpaciente">Guardar cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../controllers/dashboard/controladorDashboardPaciente.js" type="module" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

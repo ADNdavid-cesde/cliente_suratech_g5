@@ -34,16 +34,26 @@ export async function actualizarMedicamento(medicamento, id) {
   };
 
   let respuestaServidor = await fetch(URL + "/" + id, peticionPUT);
-  let medicamento = await respuestaServidor.json();
-  return medicamento;
+  let medicamentoActualizado = await respuestaServidor.json();
+  return medicamentoActualizado;
 }
 
-export async function eliminarMedicamento() {
+export async function eliminarMedicamento(id) {
   let peticionDELETE = {
     method: "DELETE",
   };
 
   let respuestaServidor = await fetch(URL + "/" + id, peticionDELETE);
-  let respuesta = await respuestaServidor.json();
+  let respuesta = await respuestaServidor.text();
   return respuesta;
+}
+
+export async function traerMedicamento(id) {
+  let peticionGET = {
+    method: "GET",
+  };
+
+  let respuestaServidor = await fetch(URL + "/" + id, peticionGET);
+  let medicamento = await respuestaServidor.json();
+  return medicamento;
 }

@@ -1,4 +1,9 @@
-import { eliminarMedico, traerMedicos } from "../../services/servicioMedico.js";
+import {
+  eliminarMedico,
+  traerMedicos,
+  traerMedico,
+  actualizarMedico,
+} from "../../services/servicioMedico.js";
 
 /* let medicos = [
   {
@@ -68,65 +73,69 @@ function mostrarMedicos() {
   let fila = document.getElementById("fila");
   fila.innerHTML = "";
 
-  let medicos;
-  traerMedicos().then(
-    (respuesta) => {
-     medicos = respuesta;
-     console.log(respuesta);
-    }
-  ).catch((error)=>{
-    console.log(error);
-  });
+  traerMedicos()
+    .then((medicos) => {
+      let contadorMedicosRegistrados =
+        document.querySelector("#cantidadRegistros");
+      contadorMedicosRegistrados.innerHTML = medicos.length;
+      //3. se recorren los datos del arreglo para obtenerlos de forma separada
+      medicos.forEach((medico) => {
+        console.log(medico);
+        //4. Se crean columnas
+        let columna = document.createElement("div");
+        columna.classList.add("col", "position-relative");
 
-  //3. se recorren los datos del arreglo para obtenerlos de forma separada
-  medicos.forEach((medico) => {
-    console.log(medicos);
-    //4. Se crean columnas
-    let columna = document.createElement("div");
-    columna.classList.add("col", "position-relative");
+        //5. Se crea tarjetas
+        let tarjeta = document.createElement("div");
+        tarjeta.classList.add("card", "p-5", "h-100", "shadow");
 
-    //5. Se crea tarjetas
-    let tarjeta = document.createElement("div");
-    tarjeta.classList.add("card", "p-5", "h-100", "shadow");
+        let nombre = document.createElement("h2");
+        nombre.textContent = medico.nombre;
 
-    let nombre = document.createElement("h2");
-    nombre.textContent = medico.nombre;
+        let especialidad = document.createElement("p");
+        especialidad.textContent = "🩺 " + medico.especialidad;
+        especialidad.classList.add("text-warning");
 
-    let especialidad = document.createElement("p");
-    especialidad.textContent = "🩺 " + medico.especialidad;
-    especialidad.classList.add("text-warning");
+        let matricula = document.createElement("p");
+        matricula.textContent = "💳 " + medico.matriculaProfesional;
 
-    let matricula = document.createElement("p");
-    matricula.textContent = "💳 " + medico.matriculaProfesional;
+        let ips = document.createElement("p");
+        ips.textContent = "🏥  " + medico.ips;
 
-    let ips = document.createElement("p");
-    ips.textContent = "🏥  " + medico.ips;
+        let acciones = document.createElement("p");
+        acciones.innerHTML = `
+              <span title="Editar" id="Ed-${medico.id}" data-bs-toggle="modal" data-bs-target="#exampleModal">📝</span> 
+              <span title="Eliminar" id="El-${medico.id}">🗑</span>`;
+        acciones.classList.add(
+          "align-self-end",
+          "position-absolute",
+          "top-0",
+          "end-0",
+          "mt-2",
+          "me-2"
+        );
 
-    let acciones = document.createElement("p");
-    acciones.innerHTML = `<span title="Editar">📝</span> <span title="Eliminar" alt="${medico.id}")>🗑</span>`;
-    acciones.classList.add(
-      "align-self-end",
-      "position-absolute",
-      "top-0",
-      "end-0",
-      "mt-2",
-      "me-2"
-    );
-
-    tarjeta.appendChild(nombre);
-    tarjeta.appendChild(especialidad);
-    tarjeta.appendChild(ips);
-    tarjeta.appendChild(matricula);
-    tarjeta.appendChild(acciones);
-    columna.appendChild(tarjeta);
-    fila.appendChild(columna);
-  });
+        tarjeta.appendChild(nombre);
+        tarjeta.appendChild(especialidad);
+        tarjeta.appendChild(ips);
+        tarjeta.appendChild(matricula);
+        tarjeta.appendChild(acciones);
+        columna.appendChild(tarjeta);
+        fila.appendChild(columna);
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 let card = document.querySelector("#fila");
-card.addEventListener("click", (event)=>{
-  if (event.target.title == 'Eliminar') {
-    eliminar(event.target.alt)
+card.addEventListener("click", (event) => {
+  if (event.target.title == "Eliminar") {
+    eliminar(event.target.id.slice(3));
+  }
+  if (event.target.title == "Editar") {
+    actualizar(event.target.id.slice(3));
   }
 });
 
@@ -143,7 +152,6 @@ function eliminar(id) {
     if (result.isConfirmed) {
       eliminarMedico(id)
         .then(() => {
-          mostrarMedicos();
           Swal.fire({
             title: "Eliminado!",
             text: "El registro ha sido eliminado",
@@ -153,6 +161,7 @@ function eliminar(id) {
             timer: 1500,
             showConfirmButton: false,
           });
+          mostrarMedicos();
         })
         .catch((error) => {
           console.log(error);
@@ -163,4 +172,81 @@ function eliminar(id) {
 
 document.addEventListener("DOMContentLoaded", () => {
   mostrarMedicos();
-}); 
+});
+
+function actualizar(id) {
+  let nombreMedico = document.getElementById("nombremedico");
+  let matriculaMedico = document.getElementById("matriculamedico");
+  let especialidadMedico = document.getElementById("especialidadmedico");
+  let salarioMedico = document.getElementById("salariomedico");
+  let correoMedico = document.getElementById("correomedico");
+  let ipsMedico = document.getElementById("ipsmedico");
+  let direccionMedico = document.getElementById("direccionmedico");
+  let disponibilidadMedico = document.getElementById("disponibilidadmedico");
+  let telefonoMedico = document.getElementById("telefonomedico");
+
+  traerMedico(id)
+    .then((medico) => {
+      console.log(medico);
+      nombreMedico.value = medico.nombre;
+      matriculaMedico.value = medico.matriculaProfesional;
+      especialidadMedico.value = medico.especialidad;
+      salarioMedico.value = medico.salario;
+      correoMedico.value = medico.correo;
+      ipsMedico.value = medico.ips;
+      direccionMedico.value = medico.direccionConsultorio;
+      disponibilidadMedico.checked = medico.finDeSemanaDisponible;
+      telefonoMedico.value = medico.telefono;
+      console.log(nombreMedico);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  let botonGuardar = document.querySelector("#botonguardarmedico");
+
+  botonGuardar.addEventListener("click", () => {
+    let medicoActualizado = {
+      nombre: nombreMedico.value,
+      matriculaProfesional: matriculaMedico.value,
+      especialidad: especialidadMedico.value,
+      salario: salarioMedico.value,
+      ips: ipsMedico.value,
+      correo: correoMedico.value,
+      telefono: telefonoMedico.value,
+      direccionConsultorio: direccionMedico.value,
+      finDeSemanaDisponible: disponibilidadMedico.checked,
+    };
+
+    Swal.fire({
+      title: "¿Deseas actualizar el registro?",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, actualizar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        actualizarMedico(medicoActualizado, id)
+          .then(() => {
+            let ventanaModal =
+              bootstrap.Modal.getOrCreateInstance("#exampleModal");
+            ventanaModal.hide();
+            Swal.fire({
+              title: "Actualizado!",
+              text: "El registro ha sido modificado",
+              icon: "success",
+              toast: true,
+              position: "top-end",
+              timer: 1500,
+              showConfirmButton: false,
+            });
+            mostrarMedicos();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
+  });
+}

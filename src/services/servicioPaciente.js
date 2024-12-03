@@ -1,7 +1,7 @@
 //Pasos para consumir API con JS
 
-  //1. Se configura la url del servicio que se desea consumir
-  const URL = "http://localhost:8080/api/paciente";
+//1. Se configura la url del servicio que se desea consumir
+const URL = "http://localhost:8080/api/paciente";
 
 export async function traerPacientes() {
   //2. Se configura la petición del servicio a consumir
@@ -15,7 +15,7 @@ export async function traerPacientes() {
   return pacientes;
 }
 
-export async function guardarPaciente(nuevoPaciente) { 
+export async function guardarPaciente(nuevoPaciente) {
   //2. Se configura la petición del servicio a consumir
   let peticionPOST = {
     method: "POST",
@@ -42,19 +42,29 @@ export async function actualizarPaciente(paciente, id) {
   };
 
   //3. Se configura la respuesta del servicio a consumir
-  let respuestaServidor = await fetch(URL+'/'+id, peticionPUT);
+  let respuestaServidor = await fetch(URL + "/" + id, peticionPUT);
   let pacienteActualizado = await respuestaServidor.json();
   return pacienteActualizado;
 }
 
-export async function eliminarPaciente() { 
+export async function eliminarPaciente(id) {
   //2. Se configura la petición del servicio a consumir
   let peticionDELETE = {
     method: "DELETE",
   };
 
   //3. Se configura la respuesta del servicio a consumir
-  let respuestaServidor = await fetch(URL +'/'+id, peticionDELETE);
-  let respuesta = await respuestaServidor.json();
+  let respuestaServidor = await fetch(URL + "/" + id, peticionDELETE);
+  let respuesta = await respuestaServidor.text();
   return respuesta;
+}
+
+export async function traerPaciente(id) {
+  let peticionGET = {
+    method: "GET",
+  };
+
+  let respuestaServidor = await fetch(URL + "/" + id, peticionGET);
+  let paciente = await respuestaServidor.json();
+  return paciente;
 }

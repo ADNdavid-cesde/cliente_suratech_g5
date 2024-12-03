@@ -34,16 +34,26 @@ export async function actualizarSignoVital(signoVital, id) {
   };
 
   let respuestaServidor = await fetch(URL + "/" + id, peticionPUT);
-  let signoVital = await respuestaServidor.json();
-  return signoVital;
+  let signoVitalActualizado = await respuestaServidor.json();
+  return signoVitalActualizado;
 }
 
-export async function eliminarSignoVital() {
+export async function eliminarSignoVital(id) {
   let peticionDELETE = {
     method: "DELETE",
   };
 
   let respuestaServidor = await fetch(URL + "/" + id, peticionDELETE);
-  let respuesta = await respuestaServidor.json();
+  let respuesta = await respuestaServidor.text();
   return respuesta;
+}
+
+export async function traerSignoVital(id) {
+  let peticionGET = {
+    method: "GET",
+  };
+
+  let respuestaServidor = await fetch(URL + "/" + id, peticionGET);
+  let signoVital = await respuestaServidor.json();
+  return signoVital;
 }

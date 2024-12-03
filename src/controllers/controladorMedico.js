@@ -1,4 +1,4 @@
-import { guardarMedico } from "../services/servicioMedico.js"
+import { guardarMedico } from "../services/servicioMedico.js";
 
 let nombreMedico = document.getElementById("nombremedico");
 let matriculaMedico = document.getElementById("matriculamedico");
@@ -13,31 +13,30 @@ let telefonoMedico = document.getElementById("telefonomedico");
 let botonRegistrarMedico = document.getElementById("botonregistromedico");
 
 botonRegistrarMedico.addEventListener("click", (evento) => {
-    evento.preventDefault();
+  evento.preventDefault();
 
-    let medico ={
-        nombre: nombreMedico.value,
-        matriculaProfesional: matriculaMedico.value,
-        especialidad: especialidadMedico.value,
-        salario: salarioMedico.value,
-        ips: ipsMedico.value,
-        correo: correoMedico.value,
-        telefono: telefonoMedico.value,
-        direccionConsultorio: direccionMedico.value,
-        finDeSemanaDisponible: disponibilidadMedico.value
-    }
+  let medico = {
+    nombre: nombreMedico.value,
+    matriculaProfesional: matriculaMedico.value,
+    especialidad: especialidadMedico.value,
+    salario: salarioMedico.value,
+    ips: ipsMedico.value,
+    correo: correoMedico.value,
+    telefono: telefonoMedico.value,
+    direccionConsultorio: direccionMedico.value,
+    finDeSemanaDisponible: disponibilidadMedico.checked,
+  };
 
-    console.log(medico);
-    guardarMedico(medico)
-    .then((respuesta)=>{
-        console.log(respuesta);
-        Swal.fire({
-            title: "Registro exitoso",
-            text: "Se ha ingresado  el medico con exito",
-            icon: "success"
-          });
+  guardarMedico(medico)
+    .then((respuesta) => {
+      console.log(respuesta);
+      Swal.fire({
+        title: "Registro exitoso",
+        text: "Se ha ingresado el medico con éxito",
+        icon: "success",
+      });
     })
     .catch((error) => {
-        console.log(error);
-      });    
+      console.log(error);
+    });
 });

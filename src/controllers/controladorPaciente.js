@@ -30,7 +30,7 @@ botonRegistrarPaciente.addEventListener("click", (evento) => {
     correo: correoPaciente.value,
     telefono: telefonoPaciente.value,
     ips: ipsPaciente.value,
-    poliza: polizaPaciente.value == "on" ? true : false,
+    poliza: polizaPaciente.checked,
     grupoIngresos: grupoIngresosPaciente.value,
     fechaAfiliacion: afiliacionPaciente.value,
   };
@@ -50,5 +50,4 @@ botonRegistrarPaciente.addEventListener("click", (evento) => {
     .catch((error) => {
       console.log(error);
     });
-
 });

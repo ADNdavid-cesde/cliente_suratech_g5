@@ -68,7 +68,7 @@
             <h4>Medicos:</h4>
             <p>
               Hasta la fecha la APP registra
-              <span class="fw-bold">42</span> medicos
+              <span class="fw-bold" id="cantidadRegistros">42</span> medicos
             </p>
             <i class="bi bi-bandaid-fill fs-1"></i>
             <i class="bi bi-heart-pulse-fill fs-1 mx-3"></i>
@@ -87,6 +87,75 @@
         <div class="row row-cols-1 row-cols-md-3 g-5" id="fila"></div>
       </section>
     </main>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Editar medico</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                  <div class="col-6">
+                      <label class="form-label">Nombres:</label>
+                      <input class="form-control" type="text" id="nombremedico">
+                  </div>
+                  <div class="col-6">
+                      <label class="form-label">Matricula profesional:</label>
+                      <input class="form-control" type="text" id="matriculamedico">
+                  </div>
+                  <div class="col-6"></div>
+              </div>
+              <div class="row my-3">
+                  <div class="col-6">
+                      <label class="form-label">Especialidad:</label>
+                      <input class="form-control" type="text" id="especialidadmedico">
+                  </div>
+                  <div class="col-6">
+                      <label class="form-label">Salario:</label>
+                      <input class="form-control" type="number" id="salariomedico">
+                  </div>
+                  <div class="col-6"></div>
+              </div>
+              <div class="row my-3">
+                  <div class="col-6">
+                      <label class="form-label">Correo electrónico:</label>
+                      <input class="form-control" type="email" id="correomedico">
+                  </div>
+                  <div class="col-6">
+                      <label class="form-label">IPS:</label>
+                      <input class="form-control" type="text" id="ipsmedico">
+                  </div>
+                  <div class="col-6"></div>
+              </div>
+              <div class="row">
+                  <div class="col-6">
+                      <label class="form-label">Teléfono:</label>
+                      <input class="form-control" type="number" id="telefonomedico">
+                  </div>
+                  <div class="col-6">
+                      <label class="form-label">Dirección consultorio:</label>
+                      <input class="form-control" type="text" id="direccionmedico">
+                  </div>
+                  <div class="col-6"></div>
+              </div>
+              <div class="row my-3 ">
+                  <div class="form-check form-switch ms-2">
+                      <input class="form-check-input" type="checkbox" role="switch" id="disponibilidadmedico">
+                      <label class="form-label" for="disponibilidadmedico">¿Esta disponible los fines de semana?</label>
+                    </div>
+              </div>              
+          </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="botonguardarmedico">Guardar cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="../../controllers/dashboard/controladorDashboardMedico.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
